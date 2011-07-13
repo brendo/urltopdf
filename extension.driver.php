@@ -157,13 +157,6 @@
 			// add a page
 			$pdf->AddPage();
 
-			// set vertical space because TCPDF doesn't support margin/padding
-			$tagvs = array(
-				'p' => array(0 => array('h' => 0, 'n' => 5), 1 => array('h' => 0, 'n' => 5)),
-				'li' => array(0 => array('h' => 1, 'n' => 0), 1 => array('h' => 1, 'n' => 0))
-			);
-			$pdf->setHtmlVSpace($tagvs);
-
 			return $pdf;
 		}
 
