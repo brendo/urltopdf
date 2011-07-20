@@ -21571,13 +21571,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						$tag['attribute']['src'] = 'http:' . $tag['attribute']['src'];
 					}
 					// replace relative path with real server path
-					if (($tag['attribute']['src'][0] == '/') AND !empty($_SERVER['DOCUMENT_ROOT']) AND ($_SERVER['DOCUMENT_ROOT'] != '/')) {
-						$findroot = strpos($tag['attribute']['src'], $_SERVER['DOCUMENT_ROOT']);
+					if (($tag['attribute']['src'][0] == '/') AND !empty(DOCROOT) AND (DOCROOT != '/')) {
+						$findroot = strpos($tag['attribute']['src'], DOCROOT);
 						if (($findroot === false) OR ($findroot > 1)) {
-							if (substr($_SERVER['DOCUMENT_ROOT'], -1) == '/') {
-								$tag['attribute']['src'] = substr($_SERVER['DOCUMENT_ROOT'], 0, -1).$tag['attribute']['src'];
+							if (substr(DOCROOT, -1) == '/') {
+								$tag['attribute']['src'] = substr(DOCROOT, 0, -1).$tag['attribute']['src'];
 							} else {
-								$tag['attribute']['src'] = $_SERVER['DOCUMENT_ROOT'].$tag['attribute']['src'];
+								$tag['attribute']['src'] = DOCROOT.$tag['attribute']['src'];
 							}
 						}
 					}
@@ -27023,13 +27023,13 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 						// replace relative path with full server path
 						$img = $this->svgdir.'/'.$img;
 					}
-					if (($img[0] == '/') AND !empty($_SERVER['DOCUMENT_ROOT']) AND ($_SERVER['DOCUMENT_ROOT'] != '/')) {
-						$findroot = strpos($img, $_SERVER['DOCUMENT_ROOT']);
+					if (($img[0] == '/') AND !empty(DOCROOT) AND (DOCROOT != '/')) {
+						$findroot = strpos($img, DOCROOT);
 						if (($findroot === false) OR ($findroot > 1)) {
-							if (substr($_SERVER['DOCUMENT_ROOT'], -1) == '/') {
-								$img = substr($_SERVER['DOCUMENT_ROOT'], 0, -1).$img;
+							if (substr(DOCROOT, -1) == '/') {
+								$img = substr(DOCROOT, 0, -1).$img;
 							} else {
-								$img = $_SERVER['DOCUMENT_ROOT'].$img;
+								$img = DOCROOT.$img;
 							}
 						}
 					}
