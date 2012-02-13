@@ -6,7 +6,7 @@
 			return array(
 				'name' => 'URL to PDF',
 				'version' => '0.1',
-				'release-date' => 'unreleased',
+				'release-date' => '2011-07-13',
 				'author' => array(
 					'name' => 'Brendan Abbott',
 					'website' => 'http://www.bloodbone.ws',

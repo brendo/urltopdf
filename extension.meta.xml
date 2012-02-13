@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension id="urltopdf" status="experimental" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+	<name>URL to PDF</name>
+	<description>Generate a PDF from your Symphony page</description>
+	<repo type="github">https://github.com/brendo/urltopdf</repo>
+	<url type="discuss">http://symphony-cms.com/discuss/thread/73527/</url>
+	<types>
+		<type>Multimedia</type>
+	</types>
+	<authors>
+		<author>
+			<name github="brendo" symphony="brendo">Brendan Abbott</name>
+			<website>http://www.bloodbone.ws</website>
+		</author>
+	</authors>
+	<releases>
+		<release version="0.1" date="2011-07-13" min="2.2" max="2.2.x" />
+	</releases>
+</extension>
