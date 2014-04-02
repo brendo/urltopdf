@@ -27,9 +27,27 @@
 					'delegate' => 'FrontendOutputPostGenerate',
 					'callback' => 'generatePDFfromURL'
 				),
+				array(
+					'page'		=> '/system/preferences/',
+					'delegate'	=> 'AddCustomPreferenceFieldsets',
+					'callback'	=> 'preferences'
+				),
+				array(
+					'page' => '/backend/',
+					'delegate' => 'AdminPagePostGenerate',
+					'callback'=> 'postedPreferences'
+				)
 			);
 		}
-
+		public function fetchNavigation() {
+			return array(
+				array(
+					'location'	=> __('Blueprints'),
+					'name'		=> __('URL to PDF'),
+					'link'		=> '/preferences/'
+				)
+			);
+		}
 	/*-------------------------------------------------------------------------
 		Delegates:
 	-------------------------------------------------------------------------*/
@@ -39,7 +57,9 @@
 		 */
 		public function generatePDFfromURL(array &$context = null) {
 			$page_data = Frontend::Page()->pageData();
-
+			if(EXTENSIONS.'/urltofiletype/lib/MPDF56/tmp' == false){
+				$director_created = mkdir(EXTENSIONS.'/urltopdf/lib/MPDF56/tmp');
+			}
 			if(!isset($page_data['type']) || !is_array($page_data['type']) || empty($page_data['type'])) return;
 
 			foreach($page_data['type'] as $type) {
@@ -125,7 +145,21 @@
 
 			$output = $dom->saveHTML();
 		}
-
+		public function postedPreferences( $page , array &$context = null){
+				$file = MANIFEST.'/pdf.config.php';
+				$check = file_exists($file);
+				if($check === true){
+						Symphony::Configuration()->flush();
+						if(isset($_POST['template-css'])){											
+								Symphony::Configuration()->set("path",$_POST['template-css'],"style");
+								Symphony::Configuration()->write($file,'755');
+						}
+						if(isset($_POST['template-file'])){
+								Symphony::Configuration()->set("path",$_POST['template-file'],"template");
+								Symphony::Configuration()->write($file,'755');
+						}
+				}	
+		}
 		private static function initPDF() {
 			require_once(EXTENSIONS . '/urltopdf/lib/tcpdf/config/lang/eng.php');
 			require_once(EXTENSIONS . '/urltopdf/lib/tcpdf/tcpdf.php');

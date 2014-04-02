@@ -1,0 +1,24 @@
+.register{float:left; clear:both;width:700px;}
+.overall{width:84%;height:500px;float:left;border:1px solid #000;margin-bottom:20px;margin-right:5px;float:left;clear:both;}
+.first{width:46.5%;float:left;padding:2%;}
+.second{width:46.5%;float:left;padding:1%;}
+.register div label{float:left;clear:both;padding:1%;}
+.register div label input{float:left;clear:both;}
+.register div label textarea{float:left;clear:both;} 
+.error{float:left;clear:both;color:red;}
+.registration-form{margin-left:20px;}
+.add-more{width:10%;}
+.registration-form input{}
+.remove{width:15%;float:left;}
+.contents{width:100%;}
+.index{float:left;clear:both;}
+.extra{float:left;}
+.invoice{float:left;}
+.invoice label{float:left;clear:both;}
+.invoice label span{float:left;clear:both;}
+#credit input{display:none;}
+.payment-invoice{ width:100%;}
+.payment-invoice tr{height:50px;background-color:#000000;}
+.payment-invoice tr td{width:50%;}
+.data{padding-bottom:15px;}
+.header-row{padding:15px; background-color:#000000; height:25px;}
