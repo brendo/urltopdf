@@ -27,7 +27,6 @@
 											$imp[] = array(URL.'/workspace/assets/css/pdf/'.$key,'0',$a);
 									}
 						}
-
 						$this->setPageType('form');
 						$form = new XMLElement('form');
 						$this->appendSubheading(__('URL to Pdf')); 
@@ -35,13 +34,10 @@
 						$container->setAttribute('class', 'settings');
 						$group = new XMLElement('div');
 						$group->setAttribute('class', 'two columns');
-						
-						
 						$check = file_exists(MANIFEST.'/pdf.config.php');
 						$check2 = file_exists(WORKSPACE.'/assets/css/pdf/default.css');
 						
-						if($check === false)
-						{
+						if($check === false){
 							$alert = new XMLElement('div');
 							$alert->setValue('Message:');
 							$msg = new XMLElement('h3');
@@ -50,30 +46,21 @@
 							$alert->appendChild($msg);
 							$this->Form->appendChild($alert);
 							
-						}else
-						{
+						}else{
 								if($check2 === true){
 										$settingslegend = new XMLElement('legend');
 										$settingslegend->setValue('Settings');
 										$container->appendChild($settingslegend);
 										$div = new XMLElement('div');
-										$div->setAttribute('class', 'actions');
-										$documentationlbl = new XMLElement('label');
-										$documentationlbl->setValue('<strong>DOCUMENTATION:</strong><br/>');
-										$documentation = new XMLElement('code');
-										$text = 'In Order to Use the Extension Correctly append the page type as download and add a URL GET Param as  in example "http://current-url/?display=pdf".';
-										$documentation->setValue($text);
-										$documentationlbl->appendChild($documentation);
+										$div->setAttribute('class', 'actions');										
 										$sellabel = new XMLElement('label');
 										$sellabel->setAttribute('class','column');
 										$sellabel->setValue('CSS file');
 										$sellabel->appendChild(Widget::Select('template-css',$imp));
 										$group->appendChild($sellabel);										
-										$container->appendChild($group);
-										$container->appendChild($documentationlbl);
+										$container->appendChild($group);									
 										$this->Form->appendChild($container);
-										$div->appendChild(Widget::Input('action[save]', __('Save Changes'), 'submit'));
-										//$this->Form->appendChild($documentationlbl);
+										$div->appendChild(Widget::Input('action[save]', __('Save Changes'), 'submit'));										
 										$this->Form->appendChild($div);
 								}
 								else{

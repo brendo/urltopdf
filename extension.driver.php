@@ -75,18 +75,39 @@
 		}
 
 		public function generatePDF($output) {
+			require_once(EXTENSIONS . '/urltopdf/lib/MPDF56/mpdf.php');
 			$params = Frontend::Page()->_param;
-
-			$pdf = self::initPDF();
-
+			$pdf=new mPDF();
+			//$pdf = self::initPDF();
+			$file = MANIFEST.'/pdf.config.php';
+			include($file);
+			$check = file_exists($file);			
+			if($check === true){
+					$bool = array_key_exists('style',$settings);
+					if($bool == true){
+							echo '1';
+							$path = $settings['style']['path'];
+							var_dump($settings);
+					}else{
+							echo '2';
+							$path = EXTENSIONS.'/urltopdf/assets/css/default.css';
+					}			
+			}else{
+					echo '3';
+					$path = EXTENSIONS.'/urltopdf/assets/css/default.css';
+			}
+			
 			$pdf->SetAuthor($params['website-name']);
 			$pdf->SetTitle($params['page-title']);
 
 			// output the HTML content
-			$pdf->writeHTML($output, true, false, true, false, '');
+			$stylesheet = file_get_contents($path);
+			$pdf->WriteHTML($stylesheet,1);
+			$pdf->writeHTML($output);
+			//$pdf->writeHTML($output, true, false, true, false, '');
 
 			// reset pointer to the last page
-			$pdf->lastPage();
+			//$pdf->lastPage();
 
 			//Close and output PDF document
 			$pdf->Output(sprintf('%s - %s', $params['website-name'], $params['page-title']), 'I');
