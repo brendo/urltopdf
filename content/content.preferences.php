@@ -5,7 +5,7 @@
 	require_once(TOOLKIT . '/class.eventmanager.php');
 	require_once(TOOLKIT . '/class.pagemanager.php');
 
-	class contentExtensionURLtoFileTypePreferences extends AdministrationPage 
+	class contentExtensionURLtoPdfPreferences extends AdministrationPage 
 	{
 		protected $driver;
 
@@ -24,7 +24,7 @@
 							$path = scandir(WORKSPACE.'/assets/css/pdf');
 						}else
 						{
-							$path = scandir(EXTENSIONS.'/urltofiletype/assets/css');
+							$path = scandir(EXTENSIONS.'/urltopdf/assets/css');
 						}
 						$arraydiffs = array('.','..');
 						$arrs = array_diff($path,$arraydiffs);
@@ -46,7 +46,7 @@
 
 						$this->setPageType('form');
 						$form = new XMLElement('form');
-						$this->appendSubheading(__('URL to File Type')); 
+						$this->appendSubheading(__('URL to Pdf')); 
 						$container = new XMLElement('fieldset');
 						$container->setAttribute('class', 'settings');
 						$group = new XMLElement('div');
@@ -68,8 +68,7 @@
 							
 						}else
 						{
-								if($check2 === true)
-								{
+								if($check2 === true){
 										$settingslegend = new XMLElement('legend');
 										$settingslegend->setValue('Settings');
 										$container->appendChild($settingslegend);
@@ -89,9 +88,7 @@
 										$col2 = new XMLElement('div');
 										$col2->setAttribute('class','column');
 										$templabel = new XMLElement('label');
-										$templabel->setValue('Template File');
-										
-										// append template select options here
+										$templabel->setValue('Template File');																				
 										$templabel->appendChild(Widget::Select('template-file',$templateoptions));
 										$col2->appendChild($templabel);
 										$group->appendChild($col2);
@@ -101,11 +98,8 @@
 										$div->appendChild(Widget::Input('action[save]', __('Save Changes'), 'submit'));
 										//$this->Form->appendChild($documentationlbl);
 										$this->Form->appendChild($div);
-										
-										
 								}
-								else
-								{
+								else{
 										$alert = new XMLElement('div');
 										$alert->setValue('Message:');
 										$msg = new XMLElement('h3');
