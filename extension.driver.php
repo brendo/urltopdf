@@ -139,13 +139,13 @@
 
 				// Send the block to the PDF generator, saving it in /TMP
 				$data = $css . $data;
-				$pdf = self::initPDF();
+				$pdf=new mPDF();
 
 				// output the HTML content
 				$pdf->writeHTML($data, true, false, true, false, '');
 
 				// reset pointer to the last page
-				$pdf->lastPage();
+				//$pdf->lastPage();
 
 				// get the output of the PDF as a string and save it to a file
 				// attempt to find the filename if it's provided with @data-utp-filename
