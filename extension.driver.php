@@ -142,7 +142,8 @@
 				$pdf=new mPDF();
 
 				// output the HTML content
-				$pdf->writeHTML($data, true, false, true, false, '');
+				$pdf->writeHTML($data);
+				//$pdf->writeHTML($data, true, false, true, false, '');
 
 				// reset pointer to the last page
 				//$pdf->lastPage();
