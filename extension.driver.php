@@ -26,25 +26,6 @@
 					'page' => '/frontend/',
 					'delegate' => 'FrontendOutputPostGenerate',
 					'callback' => 'generatePDFfromURL'
-				),
-				array(
-					'page'		=> '/system/preferences/',
-					'delegate'	=> 'AddCustomPreferenceFieldsets',
-					'callback'	=> 'preferences'
-				),
-				array(
-					'page' => '/backend/',
-					'delegate' => 'AdminPagePostGenerate',
-					'callback'=> 'postedPreferences'
-				)
-			);
-		}
-		public function fetchNavigation() {
-			return array(
-				array(
-					'location'	=> __('Blueprints'),
-					'name'		=> __('URL to PDF'),
-					'link'		=> '/preferences/'
 				)
 			);
 		}
@@ -79,24 +60,8 @@
 			$params = Frontend::Page()->_param;
 			$pdf=new mPDF();
 			//$pdf = self::initPDF();
-			$file = MANIFEST.'/pdf.config.php';
-			include($file);
-			$check = file_exists($file);			
-			if($check === true){
-					$bool = array_key_exists('style',$settings);
-					if($bool == true){
-							echo '1';
-							$path = $settings['style']['path'];
-							var_dump($settings);
-					}else{
-							echo '2';
-							$path = EXTENSIONS.'/urltopdf/assets/css/default.css';
-					}			
-			}else{
-					echo '3';
-					$path = EXTENSIONS.'/urltopdf/assets/css/default.css';
-			}
 			
+			$path = EXTENSIONS.'/urltopdf/assets/css/default.css';
 			$pdf->SetAuthor($params['website-name']);
 			$pdf->SetTitle($params['page-title']);
 
@@ -166,21 +131,6 @@
 			}
 
 			$output = $dom->saveHTML();
-		}
-		public function postedPreferences( $page , array &$context = null){
-				$file = MANIFEST.'/pdf.config.php';
-				$check = file_exists($file);
-				if($check === true){
-						Symphony::Configuration()->flush();
-						if(isset($_POST['template-css'])){											
-								Symphony::Configuration()->set("path",$_POST['template-css'],"style");
-								Symphony::Configuration()->write($file,'755');
-						}
-						if(isset($_POST['template-file'])){
-								Symphony::Configuration()->set("path",$_POST['template-file'],"template");
-								Symphony::Configuration()->write($file,'755');
-						}
-				}	
 		}
 		private static function initPDF() {
 			require_once(EXTENSIONS . '/urltopdf/lib/tcpdf/config/lang/eng.php');
