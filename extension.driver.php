@@ -102,7 +102,7 @@
 				}
 				$filename = MANIFEST . '/tmp/' . Lang::createFilename($filename) . 'pdf';
 
-				General::writeFile($filename, $pdf->Output($pdf, 'S'), Symphony::Configuration()->get('write_mode', 'file'));
+				General::writeFile($filename, $pdf->Output($filename, 'S'), Symphony::Configuration()->get('write_mode', 'file'));
 
 				// Replace the attachment node with <link rel='attachment' href='{path/to/file}' />
 				$link = $dom->createElement('link');
