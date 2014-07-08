@@ -47,13 +47,13 @@
 
 			$pdf = self::initPDF();
 			
-			$path = EXTENSIONS.'/urltopdf/assets/css/default.css';
+			//$path = EXTENSIONS.'/urltopdf/assets/css/default.css';
 			$pdf->SetAuthor($params['website-name']);
 			$pdf->SetTitle($params['page-title']);
 
 			// output the HTML content
-			$stylesheet = file_get_contents($path);
-			$pdf->WriteHTML($stylesheet,1);
+			//$stylesheet = file_get_contents($path);
+			//$pdf->WriteHTML($stylesheet,1);
 			$pdf->writeHTML($output);
 
 			//Close and output PDF document
