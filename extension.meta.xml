@@ -14,6 +14,9 @@
 		</author>
 	</authors>
 	<releases>
+		<release version="0.1" date="2011-07-13" min="2.3" max="2.5.x">
+			- Switched to using mPDF library for rendering PDF files
+		</release>
 		<release version="0.1" date="2011-07-13" min="2.2" max="2.2.x" />
 	</releases>
 </extension>
